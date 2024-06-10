@@ -1,0 +1,55 @@
+create table endereco (
+end_cd_id serial not null,
+end_tx_cep varchar(10)not null,
+end_tx_rua varchar(100)not null,
+end_int_numero int4 not null,
+end_tx_complemento varchar(20),
+end_tx_bairro varchar(25),
+end_tx_cidade varchar(20),
+end_tx_estado varchar(2),
+primary key(end_cd_id)
+);
+
+create table categoria (
+cat_cd_id serial not null,
+cat_tx_nome varchar(25),
+cat_tx_descricao varchar(100),
+primary key(cat_cd_id)
+);
+
+create table usuario (
+us_cd_id serial not null,
+us_tx_nome varchar(50) not null,
+us_tx_cpf varchar(14) not null,
+us_dt_nascimento date not null,
+us_tx_email varchar(50) not null,
+us_tx_nomeusuario varchar(30) not null,
+us_tx_telefone varchar(16) not null,
+us_fk_end int4,
+primary key(us_cd_id)
+);
+
+create table produto(
+prod_cd_id serial not null,
+prod_tx_nome varchar(50) not null,
+prod_tx_descricao varchar(100) not null,
+prod_dt_datafabricacao date not null,
+prod_int_quantidadedeestoque int8 not null,
+prod_fl_valor float not null,
+prod_fk_us int,
+primary key(prod_cd_id)
+);
+
+create table pedido(
+ped_cd_id serial not null,
+ped_dt_datapedido date,
+ped_fk_us int4 not null,
+primary key(ped_cd_id)
+);
+
+create table produtopedido(
+pred_cd_id serial not null,
+pred_fk_ped int4 not null,
+pred_fk_prod int4 not null,
+primary key(pred_cd_id)
+);
